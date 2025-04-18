@@ -1,53 +1,53 @@
-# NOTE: Some options will take effect after the entities are unloaded and loaded back to the world.
-# It is recommended to restart the server for the changes to take effect (don't be lazy :P).
+# 注意：某些选项需要在实体卸载并重新加载到世界后才会生效。
+# 建议重启服务器以使更改生效（别偷懒哦 :P）。
 #
-# NOTES:
-# 1 second = 20 ticks
-# Chances range from 0.0 to 1.0.
+# 说明：
+# 1秒=20刻
+# 概率范围从0.0到1.0。
 #
-# ITEM FORMAT:
-# @url: the URL of the texture to be used (@material should be PLAYER_HEAD).
-# @material: the material of the item.
-# @model-data: the custom model data id, used for custom resource packs.
-# @display_name & lore: self-explanatory.
-# @crafting.shaped: whether the item recipe is shaped (like WORKBENCH) or not (like FLINT_AND_STEEL).
-# @crafting.ingredients: the ingredients that'll be used for the recipe. Format: MATERIAL_NAME, KEY (used for shape, see below).
-# @crafting.shape: the shape that'll be used on the crafting table, using the KEY specified (only 3 lines required, spaces are used as AIR).
-# @flags: which attributes to hide.
-# @enchantments: the enchantments to be applied.
-# @leather-color: the color of the leather armor.
-# * Use a color from: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Color.html (e.g. AQUA, BLACK, etc.)
-# * Use a random color with: $RANDOM
-# * Use a color using RGB format: &#RRGGBB
-# @damage: the amount of damage to apply to the item (maximum durability - given damage, can be $RANDOM or X-Y).
-# @tipped: the potion effect the arrow will have (must be a TIPPED_ARROW).
-# @amount: the amount of items.
+# 物品格式：
+# @url：纹理使用的URL（@material应为PLAYER_HEAD）。
+# @material：物品材质。
+# @model-data：自定义模型数据ID，用于自定义资源包。
+# @display_name & lore：顾名思义。
+# @crafting.shaped：物品配方是否为有序合成（如工作台合成）或无序合成（如燧石与钢）。
+# @crafting.ingredients：配方所需材料。格式：MATERIAL_NAME, KEY（用于合成形状，见下文）。
+# @crafting.shape：合成表中使用的形状，使用指定的KEY（仅需3行，空格表示空气）。
+# @flags：隐藏的属性标志。
+# @enchantments：应用的附魔。
+# @leather-color：皮革盔甲的颜色。
+# * 使用颜色来自：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Color.html（如AQUA, BLACK等）
+# * 使用随机颜色：$RANDOM
+# * 使用RGB格式颜色：&#RRGGBB
+# @damage：物品承受的伤害值（最大耐久度-给定伤害，可为$RANDOM或X-Y）。
+# @tipped：箭的药水效果（必须为TIPPED_ARROW）。
+# @amount：物品数量。
 #
-# FOR FIREWORKS:
-# @firework.power: the approximate power of the firework. Each level of power is half a second of flight time (from 0 to 127).
-# firework-effects: a list of effects.
-# firework-effects.x.type: the type or shape of the effect.
-# firework-effects.x.flicker: whether the firework effect should flicker.
-# firework-effects.x.trail: whether the firework effect should have a trail.
-# firework-effects.x.colors: several primary colors to the firework effect.
-# firework-effects.x.fade-colors: several fade colors to the firework effect.
-# NOTE: More firework effects (firework stars) = more damage.
+# 烟花配置：
+# @firework.power：烟花的大致威力。每级威力对应半秒飞行时间（0到127）。
+# firework-effects：效果列表。
+# firework-effects.x.type：效果类型或形状。
+# firework-effects.x.flicker：烟花效果是否闪烁。
+# firework-effects.x.trail：烟花效果是否有尾迹。
+# firework-effects.x.colors：烟花效果的几种主色。
+# firework-effects.x.fade-colors：烟花效果的几种渐变色。
+# 注意：更多烟花效果（烟花星）=更高伤害。
 #
-# $RANDOM:
-# Color: a random color. (@leather-color / @firework.firework-effects.x.colors/fade-colors)
-# PotionType: a random potion effect. (@tipped)
-# FireworkEffect.Type: a random type or shape. (@firework.firework-effects.x.type)
-# For @damage, a random value between 1 and max item durability is used.
+# $RANDOM：
+# 颜色：随机颜色（@leather-color / @firework.firework-effects.x.colors/fade-colors）
+# 药水类型：随机药水效果（@tipped）
+# 烟花效果类型：随机类型或形状（@firework.firework-effects.x.type）
+# 对于@damage，使用1到物品最大耐久度的随机值。
 #
-# RANGED AMOUNT (X-Y): A random value between x and y. (@amount / @enchantments (level) / @firework.power)
+# 范围值（X-Y）：x到y之间的随机值（@amount / @enchantments等级 / @firework.power）
 #
-# PERCENTAGE (only valid for @damage, NOT DECIMAL): X% / %X (% must be included); for example: 50% (same as %50) would be half-damage.
-# NOTE: The percentage is taken from the maximum durability; this means:
-# * WOODEN_SWORD max durability = 60; if @damage is 50% (60 * 0.50) -> 30. if @damage is 25% (60 * 0.25) -> 15.
-# That value will be the damage added to the item; so, if @damage is %25, the new durability of the WOODEN_SWORD will be 60 - 15 = 45.
+# 百分比（仅适用于@damage，非小数）：X% / %X（必须包含%）；例如：50%（等同于%50）表示半伤害。
+# 注意：百分比基于最大耐久度计算；例如：
+# * WOODEN_SWORD最大耐久度=60；若@damage为50%（60*0.50）->30。若@damage为25%（60*0.25）->15。
+# 该值将作为物品承受的伤害；因此，若@damage为%25，WOODEN_SWORD的新耐久度为60-15=45。
 #
-# In this example, the required ingredients are 7 of GOLD_INGOT and 1 of DIAMOND.
-# You can use spaces to represent AIR (nothing).
+# 在此示例中，所需材料为7个GOLD_INGOT和1个DIAMOND。
+# 你可以使用空格表示空气（无材料）。
 # ingredients:
 #   - DIAMOND, D
 #   - GOLD_INGOT, G
@@ -56,194 +56,190 @@
 #   - "G G"
 #   - "GGG"
 #
-# USEFUL LINKS:
+# 实用链接：
 #
-# Materials: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
-# Flags: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemFlag.html
-# Professions: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Villager.Profession.html
-# Enchantments: https://www.digminecraft.com/lists/enchantment_list_pc.php
-# Colors: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Color.html
-# FireworkEffect.Type: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/FireworkEffect.Type.html
-# Effects: https://www.digminecraft.com/lists/effect_list_pc.php
+# 材质：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# 标志：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemFlag.html
+# 职业：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Villager.Profession.html
+# 附魔：https://www.digminecraft.com/lists/enchantment_list_pc.php
+# 颜色：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Color.html
+# 烟花效果类型：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/FireworkEffect.Type.html
+# 效果：https://www.digminecraft.com/lists/effect_list_pc.php
 
-# Don't touch this!
+# 请勿触碰此处！
 config-version: 6
 
-# The rendering distance of the villagers.
+# 村民渲染距离
 render-distance: 56
 
-# To generate skins faster, you will need to create your own api-key on the mineskin page.
-# NOTE: If empty, no api-key will be used, so it'll take longer to generate skins (NOT RECOMMENDED).
-# NOTE 2: DON'T login with your microsoft account, this is to contribute with a minecraft account to make the requests faster.
-# NOTE 3: You should only login with your google account. If you have problems, try clearing your cookies and try the steps again.
+# 为加快皮肤生成速度，需在mineskin页面创建自己的api密钥。
+# 注意：若留空则不使用api密钥，皮肤生成会变慢（不推荐）。
+# 注意2：请勿使用微软账户登录，建议使用Minecraft账户以加快请求速度。
+# 注意3：请使用谷歌账户登录。若遇问题，尝试清除Cookie并重试。
 #
-# To create an api-key, follow the steps below:
-# * Go to https://mineskin.org/account first.
-# * You must have a Google account, then click on "Continue as X".
-# * A secure connection check will be performed by cloudflare, wait.
-# * If the page just keeps refreshing, go to https://mineskin.org/ and then do the next step, you should already be logged in.
-# * Once you've logged in, go to https://mineskin.org/account again.
-# * Under "API Keys" click on "Manage api keys".
-# * In "Action", select "Create a new API Key".
-# * Now, you only have to define the name of the api-key, you can give it any name you want.
-# * Scroll down and click on the "Create" button.
-# * That's it, now, you just have to save the name, the api-key and the key-secret, so you don't lose it.
-# * Paste the api-key down here and do /rv reload.
+# 创建api密钥步骤：
+# * 先访问https://mineskin.org/account。
+# * 必须拥有谷歌账户，点击“以X身份继续”。
+# * Cloudflare会进行安全连接检查，等待完成。
+# * 若页面持续刷新，先访问https://mineskin.org/再执行下一步，此时应已登录。
+# * 登录后再次访问https://mineskin.org/account。
+# * 在“API Keys”下点击“Manage api keys”。
+# * 在“Action”中选择“Create a new API Key”。
+# * 定义api密钥名称（任意名称均可）。
+# * 向下滚动并点击“Create”按钮。
+# * 保存名称、api密钥和密钥密码，避免丢失。
+# * 将api密钥粘贴至此并执行/rv reload。
 mineskin-api-key: ""
 
-# If you only want villagers to look like players, spawn with weapons and attack, you can disable all interactions.
+# 若仅希望村民外观像玩家、生成时携带武器并攻击，可禁用所有互动。
 disable-interactions: false
 
-# The maximum amount of gossip a villager shares with another villager.
+# 村民向其他村民分享的最大八卦话题数。
 max-gossip-topics: 10
 
-# These are set based on the player's reputation and if the player is the hero of the village.
+# 这些设置基于玩家声望和是否为村庄英雄。
 disable-special-prices: false
 
-# If a player has a monster head equipped, the villager will attack him.
-# Heads: DRAGON_HEAD / WITHER_SKELETON_SKULL / ZOMBIE_HEAD / SKELETON_SKULL / CREEPER_HEAD
+# 若玩家佩戴怪物头颅，村民将攻击该玩家。
+# 头颅类型：DRAGON_HEAD / WITHER_SKELETON_SKULL / ZOMBIE_HEAD / SKELETON_SKULL / CREEPER_HEAD
 attack-player-wearing-monster-skull: true
 
-# If a player plays the goat horn "seek" (same sound as in raids), the villager will attack him (1.19+).
+# 若玩家吹奏山羊角“探寻”音效（与袭击相同），村民将攻击该玩家（1.19+）。
 attack-player-playing-goat-horn-seek: true
 
-# The distance at which villagers can hear the goat horn (1.19+).
+# 村民听到山羊角的距离（1.19+）。
 goat-horn-seek-range: 32
 
-# If the villager must defend a family member (only if the villager has a weapon).
+# 村民是否必须保护家庭成员（仅当村民持有武器时）。
 villager-defend-family-member: true
 
-# If the villager must defend the hero of the village (only if the villager has a weapon).
-# NOTE: A player is considered the hero of the village if he has the effect HERO_OF_THE_VILLAGE or
-# if he has killed at least one raider and will receive this effect if the defence is successful.
+# 村民是否必须保护村庄英雄（仅当村民持有武器时）。
+# 注意：玩家拥有HERO_OF_THE_VILLAGE效果，或至少击杀一名袭击者并在防御成功后获得该效果时，视为村庄英雄。
 villager-defend-hero-of-the-village: true
 
-# If the villager must defend the following player (only if the villager has a weapon).
+# 村民是否必须保护正在跟随的玩家（仅当村民持有武器时）。
 villager-defend-following-player: true
 
-# Whether villagers must defend players from attacks by other players.
-# NOTE: At least one of the 3 previous options must be enabled.
+# 村民是否必须保护玩家免受其他玩家攻击。
+# 注意：前三个选项至少需启用一个。
 villager-defend-attack-players: false
 
-# Whether to disable player nametags.
+# 是否禁用玩家姓名标签。
 disable-nametags: false
 
-# Here you can modify the text displayed above the player.
-# NOTE: This function doesn't work in 1.18.2, 1.19.4 and 1.20.1 :(.
+# 在此可修改玩家上方显示的文本。
+# 注意：此功能在1.18.2、1.19.4和1.20.1版本中无效 :(.
 custom-nametags:
-  # If true, a small block will be displayed above the text representing the villager's job block
-  # (except the unemployed and nitwits).
+  # 若为true，文本上方会显示代表村民职业方块的小方块（失业和傻子除外）。
   show-job-block: true
   lines:
-    # %villager-name% - name of the villager.
-    # %level% - level of the villager (only for @villager).
-    # %profession% - profession of the villager (only for @villager).
+    # %villager-name%：村民名称。
+    # %level%：村民等级（仅适用于@villager）。
+    # %profession%：村民职业（仅适用于@villager）。
     villager:
-      - "&f%villager-name% &a(Lvl. %level%)"
+      - "&f%villager-name% &a(等级 %level%)"
       - "&7%profession%"
     wandering-trader:
-      - "&dWandering Trader"
+      - "&d流浪商人"
       - "&f%villager-name%"
 
 skin-preview:
-  # The seconds that the preview will last.
+  # 预览持续时间（秒）。
   seconds: 10
-  # %remaining% - the remaining seconds of preview.
-  message: "Preview finishing in %remaining% seconds!"
-  # If true, the message will have a rainbow effect (similar to the jukebox effect when a record is playing).
+  # %remaining%：剩余预览时间。
+  message: "预览将在%remaining%秒后结束！"
+  # 若为true，消息将带有彩虹效果（类似播放唱片时的自动点唱机效果）。
   rainbow-message: true
 
-# If true, arrows shot by villagers will pass through other villagers.
-# NOTE: This should always be true to prevent them from killing each other by accident.
+# 若为true，村民射出的箭会穿透其他村民。
+# 注意：为避免意外互相伤害，建议始终设为true。
 arrows-pass-through-other-villagers: true
 
-# Whether it's allowed to pick arrows shot by villagers (DISALLOWED/ALLOWED/CREATIVE_ONLY).
+# 村民射出的箭是否允许拾取（DISALLOWED/ALLOWED/CREATIVE_ONLY）。
 arrow-status: ALLOWED
 
-# The waiting time between melee attacks (in ticks).
+# 近战攻击冷却时间（刻）。
 melee-attack-cooldown: 10
 
-# Whether villagers can fix iron golems if they have iron ingot(s) in hand.
+# 村民持有铁锭时是否可修复铁傀儡。
 villager-fix-iron-golem-with-iron: true
 
-# The waiting time to fix a golem again (in ticks). Use 0 or lower to set no limit.
+# 再次修复铁傀儡的冷却时间（刻）。0或更小表示无限制。
 villager-fix-iron-golem-cooldown: 600
 
-# Whether villagers can help family members (only players ATM).
+# 村民是否可帮助家庭成员（目前仅玩家）。
 villager-help-family: true
 
-# The waiting time to help a family member again (in ticks). Use 0 or lower to set no limit.
+# 再次帮助家庭成员的冷却时间（刻）。0或更小表示无限制。
 villager-help-family-cooldown: 600
 
-# Whether villagers can spawn iron golems when needed.
-# NOTE: True by default, but should be considered since villagers can defend themselves.
+# 村民是否可在需要时生成铁傀儡。
+# 注意：默认true，但需考虑村民可自行防御的情况。
 villager-spawn-iron-golem: true
 
-# If a player hits a villager (accidentally or not) during a raid, the villager will defend himself.
-# NOTE: If false, the reputation towards the player will not be reduced; however, if the villager dies,
-# it will lower the reputation with nearby villagers.
+# 若玩家在袭击中误击村民，村民是否自卫。
+# 注意：若为false，玩家声望不会降低；但若村民死亡，附近村民声望会下降。
 villager-attack-player-during-raid: false
 
-# If a player hits an iron golem (accidentally or not) during a raid, the golem will defend himself.
+# 若玩家在袭击中误击铁傀儡，铁傀儡是否自卫。
 iron-golem-attack-player-during-raid: false
 
-# Reputation required to marry a villager.
+# 结婚所需声望值。
 reputation-required-to-marry: 75
 
-# Reputation required to procreate with a villager.
+# 生育所需声望值。
 reputation-required-to-procreate: 110
 
-# Here you can allow procreation between villagers of the same sex, procreation between family members and also allow "cheating" of villagers,
-# i.e. allow villagers to procreate with other villagers even if they are married.
+# 在此可允许同性村民生育、家庭成员生育以及村民“出轨”（即已婚村民与其他村民生育）。
 #
-# By default, all these options are disabled, so it can break the functioning of villager farms.
+# 默认所有选项均禁用，否则可能影响村民农场功能。
 villager-farm:
-  # If true, male villagers will be able to procreate with other male villagers, the same with female villagers.
-  # If false, both villagers must have a different sex.
+  # 若为true，雄性村民可与其他雄性村民生育，雌性同理。
+  # 若为false，必须异性村民方可生育。
   ignore-sex-when-procreating: false
-  # If true, a villager will be able to procreate with another villager even if it is not their partner (ONLY FOR RELATIONSHIPS BETWEEN 2 VILLAGERS).
-  # If false, a villager will only be able to procreate with his partner (if he has one).
+  # 若为true，村民可与非配偶村民生育（仅适用于村民间关系）。
+  # 若为false，村民仅可与配偶生育（若有配偶）。
   allow-partner-cheating: false
-  # This option requires the one above (@allow-partner-cheating) to be true.
-  # If true, a villager will be able to procreate with another villager even if they are married to a player.
-  # If false, a villager will only be able to procreate with his partner (if he has one) and is a player.
+  # 此选项需上方@allow-partner-cheating为true。
+  # 若为true，村民可与其他村民生育，即使已与玩家结婚。
+  # 若为false，村民仅可与配偶（玩家）生育。
   allow-partner-cheating-for-all: false
-  # If true, 2 villagers from the same family can procreate with each other (WEIRD!).
-  # If false, 2 villagers will not be able to procreate with each other if they are from the same family (unless they are partners).
+  # 若为true，同家族村民可生育（慎启！）。
+  # 若为false，同家族村民无法生育（除非是配偶）。
   allow-procreation-between-family-members: false
 
-# The reputation that will be lost after divorce.  Minimum value: 2; use 1 or less to disable.
+# 离婚后损失的声望值。最小值：2；1或更小表示禁用。
 divorce-reputation-loss: 150
 
-# The reputation that will be lost after divorce with divorce papers (given by clerics).  Minimum value: 2; use 1 or less to disable.
+# 使用牧师提供的离婚文件离婚时损失的声望值。最小值：2；1或更小表示禁用。
 divorce-reputation-loss-papers: 10
 
-# Variables:
-# %sex% - the sex of the newborn baby.
+# 变量：
+# %sex%：新生儿性别。
 input-gui:
   combat-search:
-    title: "Search..."
-    text: "Search..."
+    title: "搜索..."
+    text: "搜索..."
   baby:
-    title: "I'ts a %sex%!"
-    text: "Name..."
-    invalid-name: "Invalid name!"
+    title: "是个%sex%宝宝！"
+    text: "取名..."
+    invalid-name: "无效名称！"
   whistle-search:
-    title: "Search..."
-    text: "Search..."
+    title: "搜索..."
+    text: "搜索..."
   skin-search:
-    title: "Search..."
-    text: "Search..."
+    title: "搜索..."
+    text: "搜索..."
   new-skin:
-    title: "Which player?"
-    text: "Write..."
+    title: "选择玩家？"
+    text: "输入..."
   players:
-    title: "Search..."
-    text: "Search..."
+    title: "搜索..."
+    text: "搜索..."
 
-# This only applies to villagers who have not yet spawned.
-# If the villager has no weapon in hand, he'll flee from danger (only with monsters).
-# Entities: https://www.digminecraft.com/lists/entity_list_pc.php
+# 此设置仅适用于尚未生成的村民。
+# 若村民未持有武器，会逃离危险（仅对怪物）。
+# 实体列表：https://www.digminecraft.com/lists/entity_list_pc.php
 default-target-entities:
   - DROWNED
   - EVOKER
@@ -258,77 +254,76 @@ default-target-entities:
   - ZOMBIE_VILLAGER
   - WARDEN
 
-# The distance at which villagers detect hostile entities (double is used for villagers with weapons).
+# 村民探测敌对实体的距离（持有武器的村民探测距离加倍）。
 hostile-detection-range: 15.0
 
-# If you want the villager to become a zombie when killed by one.
-# When healed, the villager will have all his data.
+# 村民被僵尸击杀时是否变为僵尸村民。
+# 治愈后保留所有数据。
 zombie-infection: true
 
-# Whether villagers should be turned into witches by being struck by lightning.
+# 村民被闪电击中时是否变为女巫。
 witch-convertion: true
 
-# Whether villagers should be turned into witches by being struck by lightning from a trident with channeling thrown by a villager.
-# NOTE: @witch-convertion must be true.
+# 村民用带有引雷附魔的三叉戟攻击时，是否将其他村民变为女巫。
+# 注意：@witch-convertion必须为true。
 witch-convertion-from-villager-trident: false
 
-# The maximum amount of health of a villager.
+# 村民最大生命值。
 villager-max-health: 20
 
-# Whether to teleport the villager to the player he's following if the distance between them is greater than X (defined below).
+# 村民跟随玩家时，若距离超过X是否传送（下方定义）。
 teleport-when-following-if-far-away: true
 
-# If the distance between the two is greater than the given value, the villager will be teleported.
+# 若距离超过给定值，村民将被传送。
 teleport-when-following-distance: 12
 
-# The time (in ticks) that the villager waits for a gift (or a bed) from a player.
+# 村民等待玩家赠送礼物（或床）的时间（刻）。
 time-to-expect: 100
 
-# Whether villagers should drop the contents of the inventory upon death.
-# NOTE: Not recommended to avoid players recovering their items after giving them to the villager
-# to increase reputation and abuse trade discounts.
+# 村民死亡时是否掉落全部物品栏内容。
+# 注意：不建议启用，避免玩家通过赠送物品提升声望后回收物品滥用交易折扣。
 drop-whole-inventory: false
 
-# The time it will take for a baby to grow (in milliseconds).
+# 婴儿成长所需时间（毫秒）。
 baby-grow-cooldown: 1200000
 
-# The time a villager must wait before being able to procreate again (in milliseconds).
+# 村民再次生育的冷却时间（毫秒）。
 procreation-cooldown: 1200000
 
-# On Halloween, there's a chance that a villager will wear a pumpkin / carved pumpkin.
+# 万圣节期间，村民佩戴南瓜/雕刻南瓜的概率。
 chance-of-wearing-halloween-mask: 0.25
 
-# If the player's reputation is less than X, the villager will be automatically divorced.
+# 若玩家声望低于X，自动离婚。
 divorce-if-reputation-is-less-than: 0
 
-# Size of the inventory of a villager.
-# Maximum size allowed: 36.
+# 村民物品栏大小。
+# 允许的最大大小：36。
 villager-inventory-size: 27
 
-# If false, sounds will be replaced to the ones from player (if possible).
+# 若为false，音效将替换为玩家音效（可能的话）。
 use-villager-sounds: false
 
-# Amount of reputation when giving a wedding ring. Minimum value: 2; use 1 or less to disable.
+# 赠送结婚戒指获得的声望值。最小值：2；1或更小表示禁用。
 wedding-ring-reputation: 20
 
-# Amount of reputation when giving a cross. Minimum value: 2; use 1 or less to disable.
+# 赠送十字架获得的声望值。最小值：2；1或更小表示禁用。
 cross-reputation: 10
 
-# Amount of reputation when having a baby.  Minimum value: 2; use 1 or less to disable.
+# 生育获得的声望值。最小值：2；1或更小表示禁用。
 baby-reputation: 20
 
-# If jokes are always funny to the partner.
+# 配偶间笑话是否总是成功。
 partner-joke-always-success: false
 
-# Chance of success when interacting with a villager.
+# 与村民互动的成功概率。
 chance-of-chat-interaction-success: 0.65
 
-# Amount of reputation for an interaction (successful or not). Minimum value: 2; use 1 or less to disable.
+# 每次互动获得的声望值（无论成功与否）。最小值：2；1或更小表示禁用。
 chat-interact-reputation: 2
 
-# The waiting time between each interaction (in seconds).
-# NOTE: @greet & @proud-of are always success, so consider putting a reasonable amount of cooldown.
-# NOTE #2: for @gift, the cooldown starts after the villager picks up the gift.
+# 每次互动的冷却时间（秒）。
+# 注意：@greet & @proud-of总是成功，建议设置合理冷却时间。
+# 注意2：@gift的冷却时间从村民拾取礼物后开始。
 interact-cooldown:
   chat: 2
   greet: 60
@@ -341,239 +336,236 @@ interact-cooldown:
   gift: 5
   bed: 5
 
-# Whether to display the title in the villager's chat messages.
-# For example, James the Armorer / Juliet the Weaponsmith / etc.
+# 是否在村民聊天消息中显示头衔。
+# 例如，James the Armorer / Juliet the Weaponsmith等。
 show-title-in-villager-chat-message: true
 
-# The article in the title name of the villager.
-# For other languages, you can specify a different article per sex.
+# 村民头衔名称中的冠词。
+# 其他语言可按性别指定不同冠词。
 villager-title-article:
   male: "the"
   female: "the"
 
-# The format of the chat when a villager speaks.
+# 村民聊天消息格式。
 villager-message-format: "%name%: %message%"
 
-# Texts that are used in some variables.
+# 某些变量中使用的文本。
 variable-text:
   acronym:
-    second: "s"
-    minute: "m"
-    hour: "h"
-    day: "d"
+    second: "秒"
+    minute: "分钟"
+    hour: "小时"
+    day: "天"
   dead: "†"
   infinite: "∞"
-  none: "None"
-  unknown: "Unknown"
-  villager: "Villager"
-  player: "Player"
-  console: "Console"
-  no-partners: "No partners(s)"
-  no-partner-currently: "Currently unmarried"
-  no-childrens: "No childrens"
-  no-effects: "No effects"
-  kid: "Kid"
-  adult: "Adult"
-  boy: "Boy"
-  girl: "Girl"
+  none: "无"
+  unknown: "未知"
+  villager: "村民"
+  player: "玩家"
+  console: "控制台"
+  no-partners: "无配偶"
+  no-partner-currently: "当前未婚"
+  no-childrens: "无子女"
+  no-effects: "无效果"
+  kid: "孩童"
+  adult: "成人"
+  boy: "男孩"
+  girl: "女孩"
   sex:
-    male: "Male"
-    female: "Female"
+    male: "男性"
+    female: "女性"
   type:
-    desert: "Desert"
-    jungle: "Jungle"
-    plains: "Plains"
-    savanna: "Savanna"
-    snow: "Snow"
-    swamp: "Swamp"
-    taiga: "Taiga"
-  # For other languages, you can specify a different profession name per sex.
+    desert: "沙漠"
+    jungle: "丛林"
+    plains: "平原"
+    savanna: "热带草原"
+    snow: "雪地"
+    swamp: "沼泽"
+    taiga: "针叶林"
+  # 其他语言可按性别指定不同职业名称。
   profession:
     male:
-      none: "Unemployed"
-      armorer: "Armorer"
-      butcher: "Butcher"
-      cartographer: "Cartographer"
-      cleric: "Cleric"
-      farmer: "Farmer"
-      fisherman: "Fisherman"
-      fletcher: "Fletcher"
-      leatherworker: "Leatherworker"
-      librarian: "Librarian"
-      mason: "Mason"
-      nitwit: "Nitwit"
-      shepherd: "Shepherd"
-      toolsmith: "Toolsmith"
-      weaponsmith: "Weaponsmith"
-      wandering-trader: "Wandering Trader"
+      none: "失业"
+      armorer: "盔甲商"
+      butcher: "屠夫"
+      cartographer: "制图师"
+      cleric: "牧师"
+      farmer: "农民"
+      fisherman: "渔夫"
+      fletcher: "制箭师"
+      leatherworker: "皮革匠"
+      librarian: "图书管理员"
+      mason: "石匠"
+      nitwit: "傻子"
+      shepherd: "牧羊人"
+      toolsmith: "工具匠"
+      weaponsmith: "武器匠"
+      wandering-trader: "流浪商人"
     female:
-      none: "Unemployed"
-      armorer: "Armorer"
-      butcher: "Butcher"
-      cartographer: "Cartographer"
-      cleric: "Cleric"
-      farmer: "Farmer"
-      fisherman: "Fisherman"
-      fletcher: "Fletcher"
-      leatherworker: "Leatherworker"
-      librarian: "Librarian"
-      mason: "Mason"
-      nitwit: "Nitwit"
-      shepherd: "Shepherd"
-      toolsmith: "Toolsmith"
-      weaponsmith: "Weaponsmith"
-      wandering-trader: "Wandering Trader"
+      none: "失业"
+      armorer: "盔甲商"
+      butcher: "屠夫"
+      cartographer: "制图师"
+      cleric: "牧师"
+      farmer: "农民"
+      fisherman: "渔夫"
+      fletcher: "制箭师"
+      leatherworker: "皮革匠"
+      librarian: "图书管理员"
+      mason: "石匠"
+      nitwit: "傻子"
+      shepherd: "牧羊人"
+      toolsmith: "工具匠"
+      weaponsmith: "武器匠"
+      wandering-trader: "流浪商人"
   activity:
-    play: "Play"
-    work: "Work"
-    core: "Core"
-    meet: "Meet"
-    rest: "Rest"
-    idle: "Idle"
-    panic: "Panic"
-    pre_raid: "Pre-Raid"
-    raid: "Raid"
-    hide: "Hide"
-    fight: "Fight"
-    stay: "Stay"
+    play: "玩耍"
+    work: "工作"
+    core: "核心"
+    meet: "聚会"
+    rest: "休息"
+    idle: "空闲"
+    panic: "恐慌"
+    pre_raid: "袭击前"
+    raid: "袭击"
+    hide: "躲藏"
+    fight: "战斗"
+    stay: "停留"
   entity:
-    axolotl: "Axolotl"
-    bat: "Bat"
-    bee: "Bee"
-    blaze: "Blaze"
-    camel: "Camel"
-    cat: "Cat"
-    cave-spider: "Cave Spider"
-    chicken: "Chicken"
-    cod: "Cod"
-    cow: "Cow"
-    creeper: "Creeper"
-    dolphin: "Dolphin"
-    donkey: "Donkey"
-    drowned: "Drowned"
-    elder-guardian: "Elder Guardian"
-    enderman: "Enderman"
-    endermite: "Endermite"
-    ender-dragon: "Ender Dragon"
-    evoker: "Evoker"
-    fox: "Fox"
-    frog: "Frog"
-    ghast: "Ghast"
-    glow-squid: "Glow Squid"
-    goat: "Goat"
-    guardian: "Guardian"
-    hoglin: "Hoglin"
-    horse: "Horse"
-    husk: "Husk"
-    illusioner: "Illusioner"
-    llama: "Llama"
-    magma-cube: "Magma Cube"
-    mule: "Mule"
-    mushroom-cow: "Mushroom Cow"
-    ocelot: "Ocelot"
-    panda: "Panda"
-    parrot: "Parrot"
-    phantom: "Phantom"
-    pig: "Pig"
-    piglin: "Piglin"
-    piglin-brute: "Piglin Brute"
-    polar-bear: "Polar Bear"
-    pufferfish: "Pufferfish"
-    rabbit: "Rabbit"
-    ravager: "Ravager"
-    salmon: "Salmon"
-    sheep: "Sheep"
-    shulker: "Shulker"
-    silverfish: "Silverfish"
-    skeleton: "Skeleton"
-    slime: "Slime"
-    sniffer: "Sniffer"
-    spider: "Spider"
-    squid: "Squid"
-    stray: "Stray"
-    strider: "Strider"
-    tadpole: "Tadpole"
-    trader-llama: "Trader Llama"
-    tropical-fish: "Tropical Fish"
-    turtle: "Turtle"
-    vex: "Vex"
-    vindicator: "Vindicator"
-    warden: "Warden"
-    witch: "Witch"
-    wither: "Wither"
-    wither-skeleton: "Wither Skeleton"
-    wolf: "Wolf"
-    zoglin: "Zoglin"
-    zombie: "Zombie"
-    zombie-villager: "Zombie Villager"
-    zombified-piglin: "Zombified Piglin"
+    axolotl: "美西螈"
+    bat: "蝙蝠"
+    bee: "蜜蜂"
+    blaze: "烈焰人"
+    camel: "骆驼"
+    cat: "猫"
+    cave-spider: "洞穴蜘蛛"
+    chicken: "鸡"
+    cod: "鳕鱼"
+    cow: "牛"
+    creeper: "苦力怕"
+    dolphin: "海豚"
+    donkey: "驴"
+    drowned: "溺尸"
+    elder-guardian: "远古守卫者"
+    enderman: "末影人"
+    endermite: "末影螨"
+    ender-dragon: "末影龙"
+    evoker: "唤魔者"
+    fox: "狐狸"
+    frog: "青蛙"
+    ghast: "恶魂"
+    glow-squid: "发光鱿鱼"
+    goat: "山羊"
+    guardian: "守卫者"
+    hoglin: "猪灵蛮兵"
+    horse: "马"
+    husk: "尸壳"
+    illusioner: "幻术师"
+    llama: "羊驼"
+    magma-cube: "岩浆怪"
+    mule: "骡"
+    mushroom-cow: "哞菇"
+    ocelot: "豹猫"
+    panda: "熊猫"
+    parrot: "鹦鹉"
+    phantom: "幻翼"
+    pig: "猪"
+    piglin: "猪灵"
+    piglin-brute: "猪灵蛮兵"
+    polar-bear: "北极熊"
+    pufferfish: "河豚"
+    rabbit: "兔子"
+    ravager: "劫掠兽"
+    salmon: "鲑鱼"
+    sheep: "羊"
+    shulker: "潜影贝"
+    silverfish: "蠹虫"
+    skeleton: "骷髅"
+    slime: "史莱姆"
+    sniffer: "嗅探兽"
+    spider: "蜘蛛"
+    squid: "鱿鱼"
+    stray: "流浪者"
+    strider: "炽足兽"
+    tadpole: "蝌蚪"
+    trader-llama: "行商羊驼"
+    tropical-fish: "热带鱼"
+    turtle: "海龟"
+    vex: "恼鬼"
+    vindicator: "卫道士"
+    warden: "监守者"
+    witch: "女巫"
+    wither: "凋灵"
+    wither-skeleton: "凋灵骷髅"
+    wolf: "狼"
+    zoglin: "僵尸猪灵"
+    zombie: "僵尸"
+    zombie-villager: "僵尸村民"
+    zombified-piglin: "僵尸猪灵"
   potion-effect-type:
-    speed: "Speed"
-    slowness: "Slowness"
-    haste: "Haste"
-    mining-fatigue: "Mining Fatigue"
-    strength: "Strength"
-    instant-health: "Instant Health"
-    instant-damage: "Instant Damage"
-    jump-boost: "Jump Boost"
-    nausea: "Nausea"
-    regeneration: "Regeneration"
-    resistance: "Resistance"
-    fire-resistance: "Fire Resistance"
-    water-breathing: "Water Breathing"
-    invisibility: "Invisibility"
-    blindness: "Blindness"
-    night-vision: "Night Vision"
-    hunger: "Hunger"
-    weakness: "Weakness"
-    poison: "Poison"
-    wither: "Wither"
-    health-boost: "Health Boost"
-    absorption: "Absorption"
-    saturation: "Saturation"
-    glowing: "Glowing"
-    levitation: "Levitation"
-    luck: "Luck"
-    unluck: "Unluck"
-    slow-falling: "Slow Falling"
-    conduit-power: "Conduit Power"
-    dolphins-grace: "Dolphins Grace"
-    bad-omen: "Bad Omen"
-    hero-of-the-village: "Hero Of The Village"
-    darkness: "Darkness"
+    speed: "速度"
+    slowness: "缓慢"
+    haste: "急迫"
+    mining-fatigue: "挖掘疲劳"
+    strength: "力量"
+    instant-health: "瞬间治疗"
+    instant-damage: "瞬间伤害"
+    jump-boost: "跳跃提升"
+    nausea: "反胃"
+    regeneration: "生命恢复"
+    resistance: "抗性提升"
+    fire-resistance: "防火"
+    water-breathing: "水下呼吸"
+    invisibility: "隐身"
+    blindness: "失明"
+    night-vision: "夜视"
+    hunger: "饥饿"
+    weakness: "虚弱"
+    poison: "中毒"
+    wither: "凋灵"
+    health-boost: "生命提升"
+    absorption: "吸收"
+    saturation: "饱和"
+    glowing: "发光"
+    levitation: "漂浮"
+    luck: "幸运"
+    unluck: "不幸"
+    slow-falling: "缓慢坠落"
+    conduit-power: "潮涌核心"
+    dolphins-grace: "海豚的优雅"
+    bad-omen: "不祥之兆"
+    hero-of-the-village: "村庄英雄"
+    darkness: "黑暗"
 
-# Here you can modify the available GUIs.
+# 在此可修改可用GUI界面。
 #
-# Global title variables:
-# %villager-name% - name of the villager (if a particular villager is involved).
-# %page% - current page (only for @combat/whistle.title).
-# %max-page% - amount of pages (only for @combat/whistle.title).
-# %sex% - the sex of the skin that'll be generated (only for @skins/new-skin.title).
-# %age-stage% the age stage of the skin that'll be generated (only for @skins/new-skin.title).
+# 全局标题变量：
+# %villager-name%：村民名称（若涉及特定村民）。
+# %page%：当前页码（仅适用于@combat/whistle.title）。
+# %max-page%：总页数（仅适用于@combat/whistle.title）。
+# %sex%：生成皮肤的性别（仅适用于@skins/new-skin.title）。
+# %age-stage%：生成皮肤的年龄阶段（仅适用于@skins/new-skin.title）。
 #
-# NOTE: For the "main" inventory it's possible to choose the slot in which the item'll be positioned,
-# with the following format: slot: x, y; starting from the top left; being 1, 1.
+# 注意：对于“main”物品栏，可通过以下格式选择物品位置：slot: x, y；从左上角开始，1, 1为起始坐标。
+# 若觉得困难，可直接指定物品栏槽位，参考https://wiki.vg/Inventory#Large_chest。
+# 例如：6x9的箱子，想将物品放在x=1, y=6，需使用：slot: 45。
 #
-# if this seems difficult for you, you can assign the slot of the inventory directly,
-# take a look at https://wiki.vg/Inventory#Large_chest.
-# For example: if you got a 6x9 chest, and you want to put an item on x = 1, y = 6, you'll need to use: slot: 45.
-#
-# All valid slots: https://filoghost.me/data/chest-commands/coordinates-table.png (credits to @filoghost)
+# 所有有效槽位：https://filoghost.me/data/chest-commands/coordinates-table.png（感谢@filoghost）
 gui:
-  # Rainbow animation is applied to all GUI's.
+  # 所有GUI应用彩虹动画。
   rainbow-animation:
     enabled: false
-    # The type of animation.
-    # 1 = All frames are changed to a random color.
-    # 2 = Each frame is changed to a different color.
+    # 动画类型。
+    # 1 = 所有帧随机变色。
+    # 2 = 每帧变换不同颜色。
     type: 1
-    # Animation speed (in ticks).
+    # 动画速度（刻）。
     delay: 10
   main:
-    # The size of this inventory. Must be a multiple of 9; minimum 27, maximum 54.
+    # 物品栏大小。必须为9的倍数；最小27，最大54。
     size: 45
-    # %reputation% - player reputation with this villager (only for @main).
-    title: "%villager-name% (rep. %reputation%)"
+    # %reputation%：玩家与该村民的声望值（仅适用于@main）。
+    title: "%villager-name% (声望 %reputation%)"
     frame:
       enabled: true
       material: GRAY_STAINED_GLASS_PANE
@@ -582,165 +574,165 @@ gui:
       chat:
         slot: 2, 2
         material: PAPER
-        display-name: "&aChat"
+        display-name: "&a聊天"
         lore:
-          - "&7Click to chat with this villager."
+          - "&7点击与该村民聊天。"
       greet:
         slot: 3, 2
         material: PAPER
-        display-name: "&aGreet"
+        display-name: "&a问候"
         lore:
-          - "&7Click to greet this villager."
+          - "&7点击问候该村民。"
       story:
         slot: 4, 2
         material: PAPER
-        display-name: "&aStory"
+        display-name: "&a讲故事"
         lore:
-          - "&7Click to tell a story to this villager."
+          - "&7点击给该村民讲故事。"
       joke:
         slot: 5, 2
         material: PAPER
-        display-name: "&aJoke"
+        display-name: "&a讲笑话"
         lore:
-          - "&7Click to tell a joke to this villager."
+          - "&7点击给该村民讲笑话。"
       insult:
         slot: 6, 2
         material: PAPER
-        display-name: "&aInsult"
+        display-name: "&a侮辱"
         lore:
-          - "&7Click to insult this villager."
+          - "&7点击侮辱该村民。"
       flirt:
         slot: 7, 2
         material: PAPER
-        display-name: "&aFlirt"
+        display-name: "&a调情"
         lore:
-          - "&7Click to flirt with this villager."
+          - "&7点击与该村民调情。"
       proud-of:
         slot: 8, 2
         material: PAPER
-        display-name: "&aBe proud of"
+        display-name: "&a引以为傲"
         lore:
-          - "&7Click to be proud of this villager"
+          - "&7点击对该村民表示骄傲。"
       follow-me:
         slot: 2, 3
         material: SADDLE
-        display-name: "&aFollow me"
+        display-name: "&a跟随我"
         lore:
-          - "&7Click to ask this villager to follow you."
+          - "&7点击请求该村民跟随你。"
       stay-here:
         slot: 3, 3
         material: LEAD
-        display-name: "&aStay here"
+        display-name: "&a留在此处"
         lore:
-          - "&7Click to ask this villager to stay here."
+          - "&7点击请求该村民留在此处。"
       inspect-inventory:
         slot: 4, 3
         material: CHEST
-        display-name: "&aInspect inventory"
+        display-name: "&a查看物品栏"
         lore:
-          - "&7Click to see the inventory of this villager."
+          - "&7点击查看该村民的物品栏。"
       gift:
         slot: 5, 3
         url: 5726d9d0632e40bda5bcf65839ba2cc98a87bd619c53adf00310d6fc71f042b5
         material: PLAYER_HEAD
-        display-name: "&aGift"
+        display-name: "&a赠送礼物"
         lore:
-          - "&7Click to give a gift to this villager."
+          - "&7点击给该村民赠送礼物。"
       information:
         slot: 6, 3
         material: KNOWLEDGE_BOOK
-        display-name: "&aVillager information"
-        # %villager-name% - name of the villager.
-        # %id% - unique ID of the villager.
-        # %skin-id% - the id of the skin the villager is using.
-        # %experience% - the current villager's experience.
-        # %max-experience% - the experience that the villager must have to level up.
-        # %sex% - sex of the villager (MALE/FEMALE).
-        # %age-stage% - age stage of the villager (KID/DULT).
-        # %health% - current health of the villager (including absorption amount).
-        # %max-health% - maximum amount of health of the villager.
-        # %type% - biome of the villager.
-        # %profession% - profession of the villager.
-        # %level% - level of the villager.
-        # %activity% - the activity that this villager is performing (if any).
-        # %current-partner% - current partner of this villager (if any).
-        # %partners% - partners of this villager (one line).
-        # %partner% - partners of this villager (displayed one below the other).
-        # %father% - father of this villager.
-        # %mother% - mother of this villager.
-        # %childrens% - childrens of this villager (one line).
-        # %children% - childrens of this villager (displayed one below the other).
-        # %effect% - active potion effects.
-        # %reputation% - player reputation with this villager.
+        display-name: "&a村民信息"
+        # %villager-name%：村民名称。
+        # %id%：村民唯一ID。
+        # %skin-id%：村民使用的皮肤ID。
+        # %experience%：村民当前经验值。
+        # %max-experience%：村民升级所需经验值。
+        # %sex%：村民性别（MALE/FEMALE）。
+        # %age-stage%：村民年龄阶段（KID/ADULT）。
+        # %health%：村民当前生命值（包括吸收量）。
+        # %max-health%：村民最大生命值。
+        # %type%：村民所在生物群系。
+        # %profession%：村民职业。
+        # %level%：村民等级。
+        # %activity%：村民正在进行的活动（如有）。
+        # %current-partner%：村民当前配偶（如有）。
+        # %partners%：村民配偶（单行显示）。
+        # %partner%：村民配偶（逐行显示）。
+        # %father%：村民父亲。
+        # %mother%：村民母亲。
+        # %childrens%：村民子女（单行显示）。
+        # %children%：村民子女（逐行显示）。
+        # %effect%：激活的药水效果。
+        # %reputation%：玩家与该村民的声望值。
         lore:
-          - "&7Name: &e%villager-name%"
+          - "&7姓名: &e%villager-name%"
           - "&7ID: &e%id%"
-          - "&7Skin ID: &e%skin-id%"
-          - "&7Reputation: &e%reputation%"
-          - "&7Sex: &e%sex%"
-          - "&7Age stage: &e%age-stage%"
-          - "&7Health: &e%health%&7/&e%max-health%"
-          - "&7Food level: &e%food-level%&7/&e%max-food-level%"
-          - "&7Type: &e%type%"
-          - "&7Profession: &e%profession% (lvl. %level%)"
-          - "&7Experience: &e%experience%&7/&e%max-experience%"
-          - "&7Activity (non-core): &e%activity%"
-          - "&7Partner(s):"
+          - "&7皮肤ID: &e%skin-id%"
+          - "&7声望: &e%reputation%"
+          - "&7性别: &e%sex%"
+          - "&7年龄阶段: &e%age-stage%"
+          - "&7生命值: &e%health%&7/&e%max-health%"
+          - "&7饱食度: &e%food-level%&7/&e%max-food-level%"
+          - "&7类型: &e%type%"
+          - "&7职业: &e%profession% (等级 %level%)"
+          - "&7经验值: &e%experience%&7/&e%max-experience%"
+          - "&7活动（非核心）: &e%activity%"
+          - "&7配偶:"
           - "&8* &e%partner%"
-          - "&7Father: &e%father%"
-          - "&7Mother: &e%mother%"
-          - "&7Childrens:"
+          - "&7父亲: &e%father%"
+          - "&7母亲: &e%mother%"
+          - "&7子女:"
           - "&8* &e%children%"
-          - "&7Effects:"
+          - "&7效果:"
           - "&8* &e%effect%"
       trade:
         slot: 7, 3
         material: EMERALD
-        display-name: "&aTrade"
+        display-name: "&a交易"
         lore:
-          - "&7Click to start trading with this villager."
+          - "&7点击开始与该村民交易。"
       no-trades:
         slot: 7, 3
         material: BARRIER
-        display-name: "&cEmpty trades"
+        display-name: "&c无交易"
         lore:
-          - "&7This villager has nothing to trade."
+          - "&7该村民没有可交易的物品。"
       divorce:
         slot: 8, 3
         material: WRITABLE_BOOK
-        display-name: "&cDivorce"
+        display-name: "&c离婚"
         lore:
-          - "&7Divorce this villager."
+          - "&7与该村民离婚。"
         only-if-married: false
       divorce-papers:
         slot: 8, 3
         material: FILLED_MAP
-        display-name: "&aDivorce papers"
+        display-name: "&a离婚文件"
         lore:
-          - "&7Ask for divorce papers."
+          - "&7申请离婚文件。"
       set-home:
         slot: 2, 4
         material: RED_BED
-        display-name: "&aSet home"
+        display-name: "&a设置家"
         lore:
-          - "&7Give this villager a bed."
+          - "&7给该村民一张床。"
         only-if-allowed: false
       procreate:
         slot: 3, 4
         material: EGG
-        display-name: "&aProcreate"
+        display-name: "&a生育"
         lore:
-          - "&7Click to start procreating."
+          - "&7点击开始生育。"
         only-if-married: false
       combat:
         slot: 4, 4
         material: STONE_SWORD
-        display-name: "&cCombat"
+        display-name: "&c战斗"
         lore:
-          - "&7Click to manage combat of this villager."
+          - "&7点击管理该村民的战斗目标。"
         only-if-allowed: false
   equipment:
-    title: "%villager-name%'s inventory"
+    title: "%villager-name%的物品栏"
     items:
       villager:
         url: SELF
@@ -748,281 +740,281 @@ gui:
         display-name: "&a%villager-name%"
       back:
         material: BARRIER
-        display-name: "&cBack"
+        display-name: "&c返回"
         lore:
-          - "&7Click to go to the previous menu."
+          - "&7点击返回上一级菜单。"
   combat:
-    title: "Targets (%page%/%max-page%)"
+    title: "目标 (%page%/%max-page%)"
     items:
       enabled:
         material: LIME_DYE
-        display-name: "&aEnabled"
+        display-name: "&a已启用"
       disabled:
         material: GRAY_DYE
-        display-name: "&cDisabled"
+        display-name: "&c已禁用"
       entity:
         material: PLAYER_HEAD
-        # *** The ones listed below are only applicable for @display-name. ***
-        # %entity-type% - the entity type (name).
+        # 以下仅适用于@display-name。
+        # %entity-type%：实体类型（名称）。
         display-name: "&a%entity-type%"
       previous:
         url: bd69e06e5dadfd84e5f3d1c21063f2553b2fa945ee1d4d7152fdc5425bc12a9
         material: PLAYER_HEAD
-        display-name: "&aPrevious"
+        display-name: "&a上一页"
         lore:
-          - "&7Click to go to the previous page."
+          - "&7点击前往上一页。"
       search:
         material: COMPASS
-        display-name: "&9Search"
+        display-name: "&9搜索"
         lore:
-          - "&7Click to search for a specific entity."
+          - "&7点击搜索特定实体。"
       clear-search:
         material: COMPASS
-        # %keyword% - the current word used as a filter.
-        display-name: "&cClear search: &8&o%keyword%"
+        # %keyword%：当前搜索关键词。
+        display-name: "&c清除搜索: &8&o%keyword%"
         lore:
-          - "&7Click to clear the browser!"
+          - "&7点击清除搜索！"
       back:
         material: BARRIER
-        display-name: "&cBack"
+        display-name: "&c返回"
         lore:
-          - "&7Click to go to the previous menu."
+          - "&7点击返回上一级菜单。"
       next:
         url: 19bf3292e126a105b54eba713aa1b152d541a1d8938829c56364d178ed22bf
         material: PLAYER_HEAD
-        display-name: "&aNext"
+        display-name: "&a下一页"
         lore:
-          - "&7Click to go to the next page."
+          - "&7点击前往下一页。"
   combat-settings:
-    title: "Combat | Settings"
+    title: "战斗 | 设置"
     items:
       players:
         material: PLAYER_HEAD
-        display-name: "&bPlayers"
+        display-name: "&b玩家"
         lore:
-          - "&7Add the players that should be attacked."
+          - "&7添加该村民要攻击的玩家。"
       animals:
         material: PLAYER_HEAD
         url: d6551840955f524367580f11b35228938b6786397a8f2e8c8cc6b0eb01b5db3d
-        display-name: "&aAnimals"
+        display-name: "&a动物"
         lore:
-          - "&7Choose the animals you want to be attacked."
+          - "&7选择你希望攻击的动物。"
       monsters:
         material: CREEPER_HEAD
-        display-name: "&cMonsters"
+        display-name: "&c怪物"
         lore:
-          - "&7Choose the monsters you want to be attacked."
+          - "&7选择你希望攻击的怪物。"
       back:
         material: BARRIER
-        display-name: "&cBack"
+        display-name: "&c返回"
         lore:
-          - "&7Click to go to the previous menu."
+          - "&7点击返回上一级菜单。"
   players:
-    # The size of this inventory. Must be a multiple of 9; minimum 36, maximum 54.
+    # 物品栏大小。必须为9的倍数；最小36，最大54。
     size: 36
-    title: "Players (%page%/%max-page%)"
+    title: "玩家 (%page%/%max-page%)"
     items:
       back:
         material: BARRIER
-        display-name: "&cBack"
+        display-name: "&c返回"
         lore:
-          - "&7Click to go to the previous menu."
+          - "&7点击返回上一级菜单。"
       previous:
         url: bd69e06e5dadfd84e5f3d1c21063f2553b2fa945ee1d4d7152fdc5425bc12a9
         material: PLAYER_HEAD
-        display-name: "&aPrevious"
+        display-name: "&a上一页"
         lore:
-          - "&7Click to go to the previous page."
+          - "&7点击前往上一页。"
       next:
         url: 19bf3292e126a105b54eba713aa1b152d541a1d8938829c56364d178ed22bf
         material: PLAYER_HEAD
-        display-name: "&aNext"
+        display-name: "&a下一页"
         lore:
-          - "&7Click to go to the next page."
+          - "&7点击前往下一页。"
       search:
         material: COMPASS
-        display-name: "&9Search"
+        display-name: "&9搜索"
         lore:
-          - "&7Click to search for a specific player."
+          - "&7点击搜索特定玩家。"
       clear-search:
         material: COMPASS
-        # %keyword% - the current word used as a filter.
-        display-name: "&cClear search: &8&o%keyword%"
+        # %keyword%：当前搜索关键词。
+        display-name: "&c清除搜索: &8&o%keyword%"
         lore:
-          - "&7Click to clear the browser!"
+          - "&7点击清除搜索！"
       player:
         material: PLAYER_HEAD
-        # %name% - name of the player.
+        # %name%：玩家名称。
         display-name: "&a%name%"
         lore:
-          - "&7This villager will attack this player."
-          - "&6Click to remove this player from this list."
+          - "&7该村民将攻击此玩家。"
+          - "&6点击从列表中移除该玩家。"
       add-new-player:
         url: 3edd20be93520949e6ce789dc4f43efaeb28c717ee6bfcbbe02780142f716
         material: PLAYER_HEAD
-        display-name: "&bNew player"
+        display-name: "&b新玩家"
         lore:
-          - "&7Click to add a new player!"
+          - "&7点击添加新玩家！"
   whistle:
-    # The size of this inventory. Must be a multiple of 9; minimum 36, maximum 54.
+    # 物品栏大小。必须为9的倍数；最小36，最大54。
     size: 36
-    title: "Family (%page%/%max-page%)"
+    title: "家庭成员 (%page%/%max-page%)"
     items:
       previous:
         url: bd69e06e5dadfd84e5f3d1c21063f2553b2fa945ee1d4d7152fdc5425bc12a9
         material: PLAYER_HEAD
-        display-name: "&aPrevious"
+        display-name: "&a上一页"
         lore:
-          - "&7Click to go to the previous page."
+          - "&7点击前往上一页。"
       next:
         url: 19bf3292e126a105b54eba713aa1b152d541a1d8938829c56364d178ed22bf
         material: PLAYER_HEAD
-        display-name: "&aNext"
+        display-name: "&a下一页"
         lore:
-          - "&7Click to go to the next page."
+          - "&7点击前往下一页。"
       search:
         material: COMPASS
-        display-name: "&9Search"
+        display-name: "&9搜索"
         lore:
-          - "&7Click to search for a specific villager."
+          - "&7点击搜索特定村民。"
       clear-search:
         material: COMPASS
-        # %keyword% - the current word used as a filter.
-        display-name: "&cClear search: &8&o%keyword%"
+        # %keyword%：当前搜索关键词。
+        display-name: "&c清除搜索: &8&o%keyword%"
         lore:
-          - "&7Click to clear the browser!"
+          - "&7点击清除搜索！"
       villager:
         material: PLAYER_HEAD
-        # %villager-name% - name of the villager.
+        # %villager-name%：村民名称。
         display-name: "&a%villager-name%"
         lore:
-          - "&7Click to summon this villager."
+          - "&7点击召唤该村民。"
   skin:
-    # The size of this inventory. Must be a multiple of 9; minimum 36, maximum 54.
+    # 物品栏大小。必须为9的倍数；最小36，最大54。
     size: 54
-    title: "Skins: %sex%/%age-stage% (%page%/%max-page%)"
+    title: "皮肤：%sex%/%age-stage% (%page%/%max-page%)"
     items:
       previous:
         url: bd69e06e5dadfd84e5f3d1c21063f2553b2fa945ee1d4d7152fdc5425bc12a9
         material: PLAYER_HEAD
-        display-name: "&aPrevious"
+        display-name: "&a上一页"
         lore:
-          - "&7Click to go to the previous page."
+          - "&7点击前往上一页。"
       next:
         url: 19bf3292e126a105b54eba713aa1b152d541a1d8938829c56364d178ed22bf
         material: PLAYER_HEAD
-        display-name: "&aNext"
+        display-name: "&a下一页"
         lore:
-          - "&7Click to go to the next page."
+          - "&7点击前往下一页。"
       search:
         material: COMPASS
-        display-name: "&9Search"
+        display-name: "&9搜索"
         lore:
-          - "&7Click to search for a specific skin."
+          - "&7点击搜索特定皮肤。"
       clear-search:
         material: COMPASS
-        # %keyword% - the current word used as a filter.
-        display-name: "&cClear search: &8&o%keyword%"
+        # %keyword%：当前搜索关键词。
+        display-name: "&c清除搜索: &8&o%keyword%"
         lore:
-          - "&7Click to clear the browser!"
+          - "&7点击清除搜索！"
       male:
         url: e7fe6e2316ca384e0c85261b14fc066e231d6127e540dfeddb8b54d911b82831
         material: PLAYER_HEAD
-        display-name: "&aSex: &bMale"
+        display-name: "&a性别：&b男性"
         lore:
-          - "&7Click to toggle sex!"
+          - "&7点击切换性别！"
       female:
         url: f6aac8c1c290be9d3bd495476aca42c68623b9cbefdd6ddbd6144855b9731c63
         material: PLAYER_HEAD
-        display-name: "&aSex: &dFemale"
+        display-name: "&a性别：&d女性"
         lore:
-          - "&7Click to toggle sex!"
+          - "&7点击切换性别！"
       adult:
         material: WATER_BUCKET
-        display-name: "&aAdult"
+        display-name: "&a成人"
         lore:
-          - "&7Click to toggle age stage!"
+          - "&7点击切换年龄阶段！"
       kid:
         material: BUCKET
-        display-name: "&aKid"
+        display-name: "&a孩童"
         lore:
-          - "&7Click to toggle age stage!"
+          - "&7点击切换年龄阶段！"
       add-new-skin:
         url: 3edd20be93520949e6ce789dc4f43efaeb28c717ee6bfcbbe02780142f716
         material: PLAYER_HEAD
-        display-name: "&bNew skin (BETA)"
+        display-name: "&b新皮肤（测试版）"
         lore:
-          - "&7Click to add a new skin!"
+          - "&7点击添加新皮肤！"
       profession:
-        # %profession% - the name of the current profession.
+        # %profession%：当前职业名称。
         display-name: "&a%profession%"
         lore:
-          - "&7Click to toggle profession (left or right)!"
+          - "&7点击切换职业（左右点击）！"
       skin:
-        # %skin-id% - the id of the current skin.
+        # %skin-id%：当前皮肤ID。
         display-name: "&a#%skin-id%"
-        # %added-by% - the player (or console) that added the skin.
-        # %when% - when was this skin added.
-        # %generated% - how many professions overlays were generated.
-        # %max-professions% - max amount of professions.
-        # %profession% - professions and their state (either added (GREEN) or not (RED), displayed one below the other).
+        # %added-by%：添加皮肤的玩家（或控制台）。
+        # %when%：皮肤添加时间。
+        # %generated%：生成的职业覆盖数。
+        # %max-professions%：最大职业数。
+        # %profession%：职业及其状态（已添加（绿色）或未添加（红色），逐行显示）。
         lore:
-          - "&7Added by: &e%added-by%"
-          - "&7When: &e%when%"
+          - "&7添加者: &e%added-by%"
+          - "&7时间: &e%when%"
           - "&7"
-          - "&7Variants: &e%generated%&7/&e%max-professions%"
+          - "&7变体: &e%generated%&7/&e%max-professions%"
           - "&8* %profession%"
           - "&7"
-          - "&7Left click to preview this skin!"
-          - "&6Middle click to select kid skins!"
-          - "&cRight click to delete this skin!"
+          - "&7左键点击预览此皮肤！"
+          - "&6中键点击选择孩童皮肤！"
+          - "&c右键点击删除此皮肤！"
   new-skin:
-    title: "New skin: %sex%/%age-stage%"
+    title: "新皮肤：%sex%/%age-stage%"
     items:
       from-player:
         url: 185d9c3fbb63e8e8f1d3f250c1a8b408412ca82e9966b53b33159e766c1278b7
         material: PLAYER_HEAD
-        display-name: "&aFrom a player"
+        display-name: "&a来自玩家"
         lore:
-          - "&7Add a new skin from a player texture!"
+          - "&7从玩家纹理添加新皮肤！"
       from-console:
         url: dcafbac5068197fda18636dfc4ce7f9df5af9b2a06e6f91e38ae35e4c435b2df
         material: PLAYER_HEAD
-        display-name: "&aFrom console"
+        display-name: "&a来自控制台"
         lore:
-          - "&7Add a new skin using texture values!"
-          - "&7To do this, you need to use the next command"
-          - "&7in console: &b/rv add-skin <sex> <texture> <signature>"
+          - "&7使用纹理值添加新皮肤！"
+          - "&7需在控制台执行以下命令："
+          - "&7/b/rv add-skin <性别> <纹理> <签名>"
       back:
         material: BARRIER
-        display-name: "&cBack"
+        display-name: "&c返回"
         lore:
-          - "&7Click to go to the previous menu."
+          - "&7点击返回上一级菜单。"
 
-# Here you can modify the items of the babies.
+# 在此可修改婴儿物品。
 #
-# Variables:
-# %villager-name% - the name of the newborn baby (display-name).
-# If you are using a texture-pack, you can assign the item a @model-data so that the package will recognize it.
+# 变量：
+# %villager-name%：新生儿名称（display-name）。
+# 若使用材质包，可为此物品分配@model-data以便材质包识别。
 baby:
   boy:
     material: PAPER
     display-name: "&b%villager-name%"
     lore:
-      - "&7Right click to spawn this little boy!"
+      - "&7右键点击生成这个小男孩！"
   girl:
     material: PAPER
     display-name: "&d%villager-name%"
     lore:
-      - "&7Right click to spawn this little girl!"
+      - "&7右键点击生成这个小女孩！"
 
-# Wedding ring crafting recipe.
+# 结婚戒指合成配方。
 wedding-ring:
   url: 93af4b73349e723b8654b75f905bd38995ccbb1a434d470b06279678945ecbdb
   material: PLAYER_HEAD
-  display-name: "&aWedding ring"
+  display-name: "&a结婚戒指"
   lore:
-    - "&7Give it to the love of your life."
+    - "&7将其送给你一生所爱。"
   crafting:
     shaped: true
     ingredients:
@@ -1033,12 +1025,12 @@ wedding-ring:
       - "G G"
       - "GGG"
 
-# Whistle item.
+# 哨子物品。
 whistle:
   material: IRON_INGOT
-  display-name: "&bWhistle"
+  display-name: "&b哨子"
   lore:
-    - "&7Use it to summon members of your family."
+    - "&7用它召唤你的家庭成员。"
   crafting:
     shaped: true
     ingredients:
@@ -1049,19 +1041,19 @@ whistle:
       - "IG "
       - "III"
 
-# Divorce papers item.
+# 离婚文件物品。
 divorce-papers:
   material: PAPER
-  display-name: "&aDivorce papers"
+  display-name: "&a离婚文件"
 
-# Cross item.
+# 十字架物品。
 cross:
   url: 1b6f0156e28c2ca6c188b2248e72fdab874abaa8d00dba72718e4f8a04e44c27
   material: PLAYER_HEAD
-  display-name: "&bCross"
+  display-name: "&b十字架"
   lore:
-    - "&7Give this cross to a villager"
-    - "&7to revive him later."
+    - "&7将此十字架送给村民"
+    - "&7以便日后复活他。"
   crafting:
     shaped: true
     ingredients:
@@ -1073,50 +1065,50 @@ cross:
       - "SIS"
 
 change-skin:
-  # %skin-id% - the skin that'll be applied.
-  # %sex% - the sex of the skin.
+  # %skin-id%：应用的皮肤ID。
+  # %sex%：皮肤性别。
   display-name: "&a#%skin-id% &e(%sex%)"
   lore:
-    - "&7Right click on a villager to change his skin!"
+    - "&7右键点击村民更换其皮肤！"
 
-# The reputation that the player will receive when giving a bad gift. Minimum value: 2; use 1 or less to disable.
+# 赠送劣质礼物获得的声望值。最小值：2；1或更小表示禁用。
 bad-gift-reputation: 5
 
-# The list of accepted items for each gift level.
-# Minimum reputation value: 2; use 1 or less to disable.
+# 各礼物等级的接受物品列表。
+# 最小声望值：2；1或更小表示禁用。
 #
-# For a list of tags, visit https://minecraft.fandom.com/wiki/Tag#List_of_tags
-# Tag format: ${tag-name}
-# Tag example: $LEATHER_ARMOR_PIECES
+# 标签列表见https://minecraft.fandom.com/wiki/Tag#List_of_tags
+# 标签格式：${tag-name}
+# 标签示例：$LEATHER_ARMOR_PIECES
 #
-# Since 1.1.2 you can specify the profession required for the gift.
-# For example:
-# * Let's say you want ALL villagers to give 2 reputation ('good' category) when giving an ARROW.
-# * To do that, we just add ARROW in the list.
-# * Now, for FLETCHER villagers, you want to give 3 reputation ('better' category).
-# * To do that, simply add the condition with the following format: ?{PROFESSION}:{MATERIAL/TAG(MUST BEGIN WITH $)}
-# * In this case: ?FLETCHER:ARROW
+# 从1.1.2版本开始，可指定礼物所需职业。
+# 例如：
+# * 希望所有村民收到ARROW时获得2声望（'good'类别）。
+# * 只需在列表中添加ARROW。
+# * 希望FLETCHER村民收到ARROW时获得3声望（'better'类别）。
+# * 使用以下格式添加条件：?{PROFESSION}:{MATERIAL/TAG（必须以$开头）}
+# * 此例中：?FLETCHER:ARROW
 #
-# This plugin offers the following extra tags:
+# 本插件提供以下额外标签：
 # * LEATHER_ARMOR_PIECES,
 # * IRON_ARMOR_PIECES
 # * CHAINMAIL_ARMOR_PIECES
 # * GOLDEN_ARMOR_PIECES
 # * DIAMOND_ARMOR_PIECES
 # * NETHERITE_ARMOR_PIECES
-# * ARMOR_PIECES (includes all of the above)
+# * ARMOR_PIECES（包含以上所有）
 # * WOODEN_TOOLS
 # * STONE_TOOLS
 # * IRON_TOOLS
 # * GOLDEN_TOOLS
 # * DIAMOND_TOOLS
 # * NETHERITE_TOOLS
-# * TOOLS (includes all of the above)
+# * TOOLS（包含以上所有）
 # * EDIBLES
 # * RECORDS
 # * POTIONS
 #
-# For a list of materials, visit https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+# 材质列表见https://minecraft.fandom.com/wiki/Material
 gift:
   good:
     reputation: 2
@@ -1157,27 +1149,27 @@ gift:
       - ENCHANTED_GOLDEN_APPLE
       - TRIDENT
 
-# Waiting time to fish again (in ticks).
+# 再次钓鱼的冷却时间（刻）。
 fishing-cooldown: 600
 
-# The amount of damage caused by a villager (melee attack).
+# 村民近战攻击伤害值。
 attack-damage: 3.0
 
-# The power of a ranged weapon (bow/crossbow).
-# NOTE: Don't change if you don't know what you're doing.
+# 远程武器（弓/弩）的威力。
+# 注意：不了解请不要修改。
 range-weapon-power: 1.6
 
-# Whether to use normal villagers instead of players (NOT RECOMMENDED, READ BELOW).
-# NOTE: If true, keep in mind...
-# * Fishermans will not be able to fish due to minecraft limitations that require a player to hold the fishing rod.
-# * While it's possible for the villager to wear armor and make use of the offhand, these items will not be rendered.
-# * The goal of this plugin is to make the villagers look (as much as possible) like players, but this is optional.
+# 是否使用普通村民而非玩家外观（不推荐，阅读下方说明）。
+# 注意：若为true，请注意...
+# * 由于Minecraft限制，渔夫无法钓鱼（需玩家手持钓竿）。
+# * 村民可穿戴盔甲和使用副手物品，但不会渲染。
+# * 本插件目标是让村民尽可能像玩家，此选项为可选。
 disable-skins: false
 
-# Here you can choose the worlds in which villagers will appear as players and can be interacted with.
-# If type is BLACKLIST, worlds listed here will be disabled.
-# If type is WHITELIST, only worlds listed here will be enabled.
-# NOTE: A restart is REQUIRED for changes to take effect.
+# 在此可选择村民以玩家外观显示并可互动的世界。
+# 若type为BLACKLIST，列出的世界将禁用。
+# 若type为WHITELIST，仅列出的世界启用。
+# 注意：修改后必须重启服务器生效。
 worlds-filter:
   type: BLACKLIST
   worlds:
@@ -1185,21 +1177,20 @@ worlds-filter:
     - world_name_2
     - world_name_3
 
-# The waiting time to try to tame again (in ticks). Use 0 or lower to set no limit.
+# 再次尝试驯服的冷却时间（刻）。0或更小表示无限制。
 tame-cooldown: 600
 
-# Here you can choose the wanted items by the villagers.
-# They'll go to pick them up if they are nearby, or they are inside a chest and villagers are allowed to loot (@loot-chest.enabled = true).
-# If you want a specific material/tag to be picked only from a chest, you must place "*" at the end of the material.
-# Example: IRON_INGOT*
+# 在此可选择村民想要的物品。
+# 若物品在附近，或在箱子中且允许村民掠夺（@loot-chest.enabled = true），村民会去拾取。
+# 若希望特定材质/标签仅从箱子中拾取，需在材质末尾加"*"。
+# 示例：IRON_INGOT*
 #
-# You can also specify the amount of items to be picked from the inventory when looting; if not specified, only one item is picked.
-# (It must be in brackets at the end of the material/tag, but before the * (if used)).
-# Example: IRON_INGOT(2)*
+# 也可指定掠夺时从物品栏拾取的数量；未指定则仅拾取1个。
+# （需在材质/标签末尾括号内指定，若使用*则加在括号后）。
+# 示例：IRON_INGOT(2)*
 #
-# This uses the same system as the gifts, you can add materials, tags, and profession condition; check @gift for more information.
-# Be careful with the items you add here, if you die near a villager they can pick up whatever they want.
-# NOTE: If you throw a wanted item to a villager they'll pick it up, but it will NOT count as a gift.
+# 采用与礼物相同的系统，可添加材质、标签和职业条件；详见@gift。
+# 注意：在村民附近死亡时，他们会拾取任何想要的物品。
 default-wanted-items:
   - BREAD
   - POTATO
@@ -1218,83 +1209,83 @@ default-wanted-items:
   - SALMON($RANDOM)*
   - IRON_INGOT(2-6)*
 
-# Chance of jumping when attacking with a sword/axe (just to give more "realism").
-# NOTE: It's recommended to leave it at 0.0 so that villagers are not attacked when jumping (or use a lower value).
+# 近战攻击时跳跃的概率（仅为增加“真实感”）。
+# 注意：建议设为0.0以免跳跃时被攻击（或使用较低值）。
 melee-attack-jump-chance: 0.0
 
-# Chance of jumping when attacking with a bow/crossbow and backing up (just to give more "realism").
-# NOTE: It's recommended to leave it at 0.0 so that villagers are not attacked when jumping (or use a lower value).
+# 远程攻击（弓/弩）时后退并跳跃的概率（仅为增加“真实感”）。
+# 注意：建议设为0.0以免跳跃时被攻击（或使用较低值）。
 back-up-jump-chance: 0.0
 
-# Who can modify the inventory of a villager (EVERYONE/FAMILY/PARTNER/NONE).
-# NOTE: Be careful with this.
-# * Some players may give gifts to villagers to increase their reputation and then take the items from these villagers.
-# * The higher the reputation, the greater the discounts.
-# * Check the option below to prevent this.
+# 谁可以修改村民的物品栏（EVERYONE/FAMILY/PARTNER/NONE）。
+# 注意：谨慎设置。
+# * 某些玩家可能通过赠送物品提升声望后，从村民处取回物品。
+# * 声望越高，折扣越大。
+# * 启用下方选项可防止此行为。
 who-can-modify-villager-inventory: NONE
 
-# Who can modify the target entities of a villager (EVERYONE/FAMILY/PARTNER/NONE).
+# 谁可以修改村民的战斗目标（EVERYONE/FAMILY/PARTNER/NONE）。
 who-can-modify-villager-combat: FAMILY
 
-# Who can modify the home (bed) of a villager (EVERYONE/FAMILY/PARTNER/NONE).
+# 谁可以修改村民的家（床）（EVERYONE/FAMILY/PARTNER/NONE）。
 who-can-modify-villager-home: FAMILY
 
-# Who can modify the name of a villager using a nametag (EVERYONE/FAMILY/PARTNER/NONE).
-# NOTE: The amount of characters must be at least 3 and no colors can be used.
+# 谁可以使用命名牌修改村民姓名（EVERYONE/FAMILY/PARTNER/NONE）。
+# 注意：姓名长度至少3个字符，不可使用颜色。
 who-can-modify-villager-name: NONE
 
-# Whether special prices are disabled when modifying the villager's inventory.
+# 允许修改村民物品栏时是否禁用特殊价格。
 disable-special-prices-if-allowed-to-modify-inventory: true
 
-# Here you can change the melee attack range.
-# NOTE: Avoid setting values greater than 4.
+# 在此可修改近战攻击范围。
+# 注意：避免设置超过4的值。
 melee-attack-range: 3.375
 
-# Here you can choose whether villagers can ride a ship when they are near it.
+# 在此可选择村民在附近时是否可乘坐船只。
 disable-villager-riding-nearby-boat: false
 
-# Here you can configure the looting of chests from villagers.
-# NOTE: The items that the villager will loot from the chests are those specified above in @default-wanted-items.
+# 在此可配置村民掠夺箱子的行为。
+# 注意：村民从箱子掠夺的物品为上方@default-wanted-items中指定的物品。
 loot-chest:
-  # Whether this behavior is enabled.
+  # 是否启用此行为。
   enabled: true
-  # The required text on some line of the sign that must be placed on the chest for the villagers to loot.
-  # If you want the villagers to be able to loot any chest, leave the text empty, like this: required-sign-line: "" (NOT RECOMMENDED)
+  # 箱子上必须有的标志行文本，村民才会掠夺。
+  # 若希望村民可掠夺任何箱子，留空即可，如：required-sign-line: ""（不推荐）
   required-sign-line: "[Villager]"
-  # If true, nitwit villagers will randomly order the chest after looting a chest.
+  # 若为true，傻子村民掠夺后会随机整理箱子物品。
   nitwit-shuffle-inventory: false
-  # The time (in ticks) a villager must wait before being able to loot another chest.
+  # 村民再次掠夺箱子的冷却时间（刻）。
   cooldown: 2400
-  # The time (in millis) a villager must wait before being able to loot a specific chest.
-  # Once a villager loots a chest, this chest will receive a cooldown.
+  # 村民掠夺特定箱子的冷却时间（毫秒）。
+  # 村民掠夺箱子后，该箱子将进入冷却。
   per-chest-cooldown: 3600000
-  # Whether villagers can loot chests.
+  # 是否允许婴儿村民掠夺箱子。
   allow-babies: false
 
-# Reputation required to ask the villager to follow you.
+# 请求村民跟随所需声望值。
 reputation-required-to-ask-to-follow: 20
 
-# If true, members of the villager's family may ask to be followed regardless of the required reputation in @reputation-required-to-ask-to-follow.
+# 若为true，村民家庭成员可无视@reputation-required-to-ask-to-follow请求跟随。
 family-bypass-ask-to-follow: true
 
-# Reputation required to ask the villager to stay.
+# 请求村民停留所需声望值。
 reputation-required-to-ask-to-stay: 20
 
-# If true, members of the villager's family may ask the villager to stay regardless of the required reputation in @reputation-required-to-ask-to-stay.
+# 若为true，村民家庭成员可无视@reputation-required-to-ask-to-stay请求停留。
 family-bypass-ask-to-stay: true
 
-# The initial reputation that a villager will have with the player (must be the father) at birth.
-# Minimum reputation value: 2; use 1 or less to disable.
+# 婴儿出生时与父亲的初始声望值（必须为父亲）。
+# 最小声望值：2；1或更小表示禁用。
 initial-reputation-at-birth: 50
 
-# Here you can modify the equipment a villager will receive when spawning.
-# @chance: the chance of receiving the item (from 0.0 to 1.0). If not stated it'll be 1.0.
-# @only-for-range-weapon: the item will only be added to the inventory if the villager received a ranged weapon.
-# @only-for-bow: same as above, but only for bows.
-# @only-for-crossbow: same as above, but only for crossbows.
-# @off-hand-if-possible: the item will be added to the secondary hand if possible (only if the off-hand is not occupied).
+# 在此可修改村民生成时的装备。
+# @chance：获得物品的概率（0.0到1.0）。未指定则为1.0。
+# @only-for-range-weapon：仅当村民获得远程武器时添加到物品栏。
+# @only-for-bow：同上，但仅适用于弓。
+# @only-for-crossbow：同上，但仅适用于弩。
+# @off-hand-if-possible：若可能，添加到副手（仅当副手空闲时）。
 spawn-loot:
-  # If true, villagers who have spawned before will also be equipped.
+  # 若为true，已生成的村民也会装备。
   force-equip: false
   equipment:
     hand:
@@ -1408,48 +1399,48 @@ spawn-loot:
       material: MILK_BUCKET
       amount: 1
 
-# Whether a villager can adopt an abandoned pet. A pet is considered abandoned when its owner (must be a villager) dies.
+# 村民是否可收养被遗弃的宠物（宠物主人（必须为村民）死亡时视为被遗弃）。
 villager-adopts-abandoned-pet: true
 
-# Whether the explosion of a firework launched from a villager's crossbow harms other villagers.
+# 村民弩发射的烟花爆炸是否伤害其他村民。
 villager-crossbow-firework-damages-other-villagers: false
 
-# Here you can modify automatic greetings from villagers.
+# 在此可修改村民的自动问候行为。
 greet-messages:
-  # Whether this behavior is enabled.
+  # 是否启用此行为。
   enabled: true
-  # The distance the player must be from the villagers.
+  # 玩家与村民的距离范围。
   range: 5.0
-  # The waiting time (in millis) between greetings.
+  # 问候间隔时间（毫秒）。
   cooldown: 60000
-  # The waiting time (in millis) between each type of greetings the player can receive.
-  # Those types are: ADULT, CHILD, CHILD_OFFSPRING, PARTNER.
+  # 玩家可接收的每种问候类型的间隔时间（毫秒）。
+  # 类型包括：ADULT, CHILD, CHILD_OFFSPRING, PARTNER。
   per-type-cooldown: 300000
-  # The required reputation to receive a greeting from a villager.
+  # 接收村民问候所需声望值。
   required-reputation: 5
 
-# Only throw trident when the villager is in water or when exposed to rain.
+# 仅当村民在水中或雨中时投掷三叉戟。
 riptide-only-in-water-or-rain: true
 
-# Here you can modify the different movement speeds.
-# NOTE: Swim should be the highest speed of these 4 as it's usually slower than the others.
+# 在此可修改不同移动速度。
+# 注意：游泳速度应是这四个中最高的，因为通常比其他速度慢。
 speed-modifier:
   eat: 0.25
   walk: 0.5
   sprint: 0.75
   swim: 1.0
 
-# Since baby villagers are smaller, they look a bit higher than adults; here you can set the offset so that they look at the same height as adults.
-# NOTE 1: For some reason, it's not necessary to add an offset in 1.19.4, at least in some paper builds.
-# NOTE 2: If you see that baby villagers look higher than adults, you should change this value to a negative number, -0.5 used to work fine in older versions.
-# NOTE 3: This is only necessary when skins are enabled, that means, {@disable-skins = false}.
+# 由于婴儿村民体型较小，看起来比成年村民高；在此设置偏移量使其与成年村民同高。
+# 注意1：由于某些原因，1.19.4版本无需偏移，至少在某些Paper构建中如此。
+# 注意2：若发现婴儿村民看起来比成年村民高，应将此值设为负数，旧版本中-0.5效果较好。
+# 注意3：仅当启用皮肤时需要（@disable-skins = false）。
 baby-look-height-offset: 0.0
 
-# Here you can modify the schedule of the villagers and their respective activities whether they're babies or adults.
-# For more information, take a look at: https://minecraft.fandom.com/wiki/Villager#Schedules
+# 在此可修改村民的日程安排及其活动（无论婴儿或成人）。
+# 更多信息见：https://minecraft.fandom.com/wiki/Villager#Schedules
 #
-# NOTE: Don't touch this if you don't know what you're doing!
-# Available activities: IDLE, PLAY, WORK, MEET, REST.
+# 注意：不了解请不要修改！
+# 可用活动：IDLE, PLAY, WORK, MEET, REST。
 schedules:
   baby:
     10: IDLE
@@ -1464,53 +1455,53 @@ schedules:
     11000: IDLE
     12000: REST
 
-# Here you can configure the revival of villagers.
-# NOTE: This is an experimental feature, it may be removed in the future either for good or to fix bugs.
+# 在此可配置村民复活功能。
+# 注意：此为实验性功能，未来可能因修复bug或优化而移除。
 revive:
-  # Whether villagers can be revived.
+  # 村民是否可复活。
   enabled: false
-  # If villagers can only be revived at night.
+  # 是否仅在夜间复活。
   only-at-night: true
-  # If only villagers with a cross can be revived.
+  # 是否仅持有十字架的村民可复活。
   only-with-cross: true
-  # Chance of an emerald block breaking when struck by lightning.
+  # 闪电击中时绿宝石块破碎的概率。
   break-emerald-chance: 0.1
   head-item:
     url: SELF
     material: PLAYER_HEAD
     display-name: "&a%villager-name%"
   spawn-values:
-    # Health when spawning.
+    # 生成时的生命值。
     health: 20
-    # Food level when spawning.
+    # 生成时的饱食度。
     food-level: 20
-    # Effects to apply when spawning.
+    # 生成时应用的药水效果。
     potion-effects:
       - REGENERATION, 900, 2
       - ABSORPTION, 100, 2
       - FIRE_RESISTANCE, 800, 1
   boss-bar:
-    # Enable or disable the bossbar.
+    # 是否启用Boss栏。
     enabled: true
-    # %villager-name% - name of the villager.
+    # %villager-name%：村民名称。
     title: "%villager-name%"
-    # If the bossbar increases or decreases (INCREASE/DECREASE).
+    # Boss栏进度变化方向（INCREASE/DECREASE）。
     progress-type: INCREASE
-    # Color of the bossbar.
+    # Boss栏颜色。
     color: RED
-    # Style of the bossbar.
+    # Boss栏样式。
     style: SOLID
-    # Flags of the bossbar.
+    # Boss栏标志。
     flags:
       - CREATE_FOG
       - DARKEN_SKY
 
-# If true, villagers will be able to feed, tame and ride horses, donkeys and mules.
-# NOTE: This is an experimental feature, it may be removed in the future either for good or to fix bugs.
+# 若为true，村民可喂养、驯服和骑乘马、驴和骡。
+# 注意：此为实验性功能，未来可能因修复bug或优化而移除。
 tame-horses: false
 
-# If true, the scale of baby villagers will change to the scale of adult villagers, meaning that their hitboxes will be larger;
-# hence, baby villagers will no longer pass through 1x1 holes.
-# If false, the baby villagers will have their hitbox reduced (vanilla) but can be seen passing through 1x1 blocks, looking glitchy.
-# NOTE: This option will only take effect if @disable-skins is false.
+# 若为true，婴儿村民的体型将变为成年村民体型，即碰撞箱变大；
+# 因此，婴儿村民不再能穿过1x1的孔洞。
+# 若为false，婴儿村民碰撞箱缩小（原版效果），但可能出现穿过1x1方块的视觉错误。
+# 注意：此选项仅在@disable-skins为false时生效。
 increase-baby-scale: true
